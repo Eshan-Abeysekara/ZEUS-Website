@@ -1,6 +1,6 @@
 import { v2 as cloudinary} from "cloudinary"
 import productModel from "../models/productModel.js"
-import { response } from "express"
+
 
 // function for add product
 const addProduct = async (req, res) => {
@@ -81,14 +81,16 @@ const removeProduct = async (req, res) => {
 const singleProduct = async (req, res) => {
     try {
         
-        const {productId} = req.body
+        const { productId } = req.body
         const product = await productModel.findById(productId)
         res.json({success:true,product})
 
     } catch (error) {
-        console.log(error);
+        console.log(error)
         res.json({ success: false, message: error.message})
     }
 }
+
+
 
 export { listProducts, addProduct, removeProduct, singleProduct };
